@@ -1,91 +1,38 @@
+# Budget-App-Deployment
+This project is part of a DevOps assessment where I had to deploy a simple Ruby on Rails application with PostgreSQL using various DevOps tools like Docker, Kubernetes, ArgoCD, and Tekton.
 
 ---
 
-## ✅ Step 1: Docker
+## What I Did
 
-- **Dockerfile** is created to containerize the Ruby on Rails application.
-- PostgreSQL runs in a separate container using `docker-compose.yml`.
-- Simple Rails app created with PostgreSQL as backend.
+### 🐳 Step 1: Docker
+- I created a `Dockerfile` to containerize a Rails app.
+- PostgreSQL runs in a separate container using `docker-compose`.
+- This helped me understand how to run app and database in different containers.
 
-📁 Files:
-- `docker/Dockerfile`
-- `docker/entrypoint.sh`
-- `docker/docker-compose.yml`
+### ☸️ Step 2: Kubernetes
+- I wrote Kubernetes YAML files to deploy the Rails app and PostgreSQL.
+- PostgreSQL runs using a StatefulSet for better data handling.
+- I also set up Ingress so I could access the app from my browser.
 
----
+### 🚀 Step 3: ArgoCD (GitOps)
+- I installed ArgoCD and used it to deploy the app using GitOps.
+- I created an `application.yaml` and other config files like `argocd-cm` and `rbac`.
+- My Kubernetes files are stored in a private GitHub repo and synced using ArgoCD.
 
-## ☸️ Step 2: Kubernetes
-
-- Rails app is deployed using a `Deployment` and `Service`.
-- PostgreSQL is deployed using a `StatefulSet` for persistent storage.
-- Ingress is configured for external access (e.g., via NGINX Ingress Controller).
-
-📁 Files:
-- `k8s/rails-deployment.yaml`
-- `k8s/rails-service.yaml`
-- `k8s/postgres-statefulset.yaml`
-- `k8s/ingress.yaml`
-
----
-
-## 🚀 Step 3: GitOps with ArgoCD
-
-- ArgoCD is used to manage the Kubernetes deployment.
-- Configuration includes linking to the private GitHub repository.
-- Access control and repository credentials are set via config maps and secrets.
-
-📁 Files:
-- `gitops/application.yaml`
-- `gitops/argocd-cm.yaml`
-- `gitops/argocd-rbac-cm.yaml`
-- `gitops/repo-secret.yaml`
+### 🔁 Step 4: Tekton CI/CD
+- I created a Tekton pipeline that:
+  - Clones the Rails app from GitHub
+  - Builds the Docker image using Kaniko
+  - Pushes the image to Docker Hub
+- I used the Tekton Dashboard to manually run the pipeline.
 
 ---
 
-## 🔁 Step 4: Tekton CI/CD Pipeline
+## Files in This Project
 
-- Tekton pipeline clones the source code, builds the Docker image using Kaniko, and pushes to Docker Hub.
-- Pipeline is triggered manually from Tekton Dashboard.
-
-📁 Files:
-- `tekton/git-clone.yaml`
-- `tekton/kaniko-build.yaml`
-- `tekton/pipeline.yaml`
-- `tekton/pipeline-run.yaml`
-
----
-
-## 🛠 Prerequisites
-
-- Docker & Docker Compose
-- Minikube / K3d (for Kubernetes cluster)
-- ArgoCD CLI or UI
-- Tekton Pipelines and Tekton Dashboard installed
-- Kubernetes Ingress Controller (like NGINX)
-- Docker Hub account (for pushing image)
-
----
-
-## 🎬 Demo Video
-
-> Link to video demo of the entire setup: _[Add your video demo link here]_
-
----
-
-## 📎 Submission
-
-This repo includes:
-- Dockerfile & Compose setup
-- Kubernetes Manifests
-- ArgoCD GitOps configs
-- Tekton Pipeline configs
-
----
-
-## 🙋‍♂️ Author
-
-Aman Deol  
-DevOps Learner | Cloud Enthusiast  
-[LinkedIn](https://www.linkedin.com/in/amandeol) | [Credly](https://www.credly.com/users/aman-deol)
-
----
+```text
+docker/     → Dockerfile and docker-compose
+k8s/        → Kubernetes YAML files
+gitops/     → ArgoCD config files
+tekton/     → Tekton pipeline files
