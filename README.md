@@ -1,4 +1,5 @@
 # Budget-App-Deployment
+
 This project is part of a DevOps assessment where I had to deploy a simple Ruby on Rails application with PostgreSQL using various DevOps tools like Docker, Kubernetes, ArgoCD, and Tekton.
 
 ---
@@ -36,3 +37,32 @@ docker/     → Dockerfile and docker-compose
 k8s/        → Kubernetes YAML files
 gitops/     → ArgoCD config files
 tekton/     → Tekton pipeline files
+````
+
+---
+
+## Tools Used
+
+* Docker & Docker Compose
+* Kubernetes (Minikube)
+* ArgoCD
+* Tekton Pipelines
+* Docker Hub
+
+---
+
+## Demo Video
+
+📹 Link to my demo video: *\[Add your video link here]*
+
+---
+
+## About Me
+
+**Aman Deol**
+Learning DevOps and Cloud ☁️
+
+🔗 **Social Links**
+
+* [LinkedIn](https://www.linkedin.com/in/amandeol063)
+* [Credly](https://www.credly.com/users/amandeol063)
