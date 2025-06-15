@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-push-task
+spec:
+  steps:
+    - name: build
+      image: gcr.io/kaniko-project/executor:latest
+      env:
+        - name: DOCKER_CONFIG
+          value: /tekton/home/.docker/
+      args:
+        - "--dockerfile=Dockerfile"
+        - "--context=."
+        - "--destination=docker.io/your-dockerhub-username/budget-app:latest"

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: budget-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: budget-app
+  template:
+    metadata:
+      labels:
+        app: budget-app
+    spec:
+      containers:
+        - name: budget-app
+          image: your-dockerhub-username/budget-app:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DATABASE_URL
+              value: postgres://rails_user:password@postgres:5432/budget_app_production
+          command: ["entrypoint.sh"]
