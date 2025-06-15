@@ -82,16 +82,10 @@ This repo includes:
 
 ---
 
-## 🔒 Note
-
-This repository is kept private as per the assessment requirement. No sensitive keys or credentials are committed.
-
----
-
 ## 🙋‍♂️ Author
 
 Aman Deol  
 DevOps Learner | Cloud Enthusiast  
-[LinkedIn](https://www.linkedin.com/in/amandeol) | [HackerRank](https://www.hackerrank.com/profile/amandeol)
+[LinkedIn](https://www.linkedin.com/in/amandeol) | [Credly](https://www.credly.com/users/aman-deol)
 
 ---
