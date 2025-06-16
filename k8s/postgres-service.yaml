@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres   # <-- must match hostname in DATABASE_URL
+spec:
+  selector:
+    app: postgres  # <-- must match your postgres deployment label
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

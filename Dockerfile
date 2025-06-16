@@ -1,31 +1,22 @@
 FROM ruby:3.1
 
-# Install dependencies
-RUN apt-get update -qq && apt-get install -y \
-  nodejs \
-  yarn \
-  postgresql-client \
-  build-essential \
-  libpq-dev \
-  imagemagick
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
-# Set working directory
+# Set the working directory
 WORKDIR /myapp
 
-# Install gems
-COPY Gemfile* ./
-RUN gem install bundler && bundle install
+# ✅ Copy only the Rails app directory into the container
+COPY Budget-App/ /myapp
 
-# Add the rest of the app
-COPY . .
-
-# Add and set entrypoint script
-COPY entrypoint.sh /usr/bin/
+# ✅ Copy your entrypoint script and make it executable
+COPY entrypoint.sh /usr/bin/entrypoint.sh
 RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
 
-# Expose Rails default port
+# ✅ Install bundler and the app's dependencies
+RUN gem install bundler
+RUN bundle install
+
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+
 EXPOSE 3000
-
-# Start the server
 CMD ["rails", "server", "-b", "0.0.0.0"]
