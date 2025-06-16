@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: budget-app
-          image: your-dockerhub-username/budget-app:latest
+          image: amandeol063/budget-app:latest
           ports:
             - containerPort: 3000
           env:

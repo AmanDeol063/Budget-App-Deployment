@@ -3,9 +3,11 @@ kind: Service
 metadata:
   name: budget-app
 spec:
+  type: NodePort
   selector:
     app: budget-app
   ports:
     - protocol: TCP
       port: 80
       targetPort: 3000
+      nodePort: 31123  # Optional: You can let Kubernetes assign if you remove this
