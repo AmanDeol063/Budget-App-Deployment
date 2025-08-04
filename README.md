@@ -1,13 +1,13 @@
 # Budget-App-Deployment
 
-This project is part of a DevOps assessment where I had to deploy a simple Ruby on Rails application with PostgreSQL using various DevOps tools like Docker, Kubernetes, ArgoCD, and Tekton.
+This project demonstrates the end-to-end deployment of a Ruby on Rails application with PostgreSQL using Docker, Kubernetes, Jenkins for CI/CD, and ArgoCD for GitOps. It also integrates security scanning tools like Trivy, Brakeman, and bundler-audit to ensure DevSecOps best practices. The application is containerized, tested, and deployed through a fully automated pipeline.
 
 ---
 
 ## What I Did
 
 ### 🐳 Step 1: Docker
-- I created a `Dockerfile` to containerize a Rails app.
+- I created a `Dockerfile` to containerize the Rails app.
 - PostgreSQL runs in a separate container using `docker-compose`.
 - This helped me understand how to run app and database in different containers.
 
@@ -21,12 +21,14 @@ This project is part of a DevOps assessment where I had to deploy a simple Ruby 
 - I created an `application.yaml` and other config files like `argocd-cm` and `rbac`.
 - My Kubernetes files are stored in a private GitHub repo and synced using ArgoCD.
 
-### 🔁 Step 4: Tekton CI/CD
-- I created a Tekton pipeline that:
+### 🔁 Step 4: Jenkins CI/CD
+- I created a Jenkins pipeline that:
   - Clones the Rails app from GitHub
-  - Builds the Docker image using Kaniko
+  - Builds the Docker image
+  - Runs DevSecOps tools like Brakeman, bundler-audit, and Trivy
   - Pushes the image to Docker Hub
-- I used the Tekton Dashboard to manually run the pipeline.
+  - Updates the image tag in the Kubernetes manifest
+  - Commits changes to the GitHub repo for ArgoCD to sync and deploy
 
 ---
 
@@ -36,26 +38,17 @@ This project is part of a DevOps assessment where I had to deploy a simple Ruby 
 docker/     → Dockerfile and docker-compose
 k8s/        → Kubernetes YAML files
 gitops/     → ArgoCD config files
-tekton/     → Tekton pipeline files
-````
-
----
+jenkins/    → Jenkins pipeline (Jenkinsfile)
+ ```
 
 ## Tools Used
 
 * Docker & Docker Compose
 * Kubernetes (Minikube)
-* ArgoCD
-* Tekton Pipelines
+* ArgoCD (GitOps)
+* Jenkins (CI/CD)
+* Trivy, Brakeman, bundler-audit (DevSecOps)
 * Docker Hub
-
----
-
-## Demo Video
-
-📹 Link to my demo video: (https://youtu.be/5zOihBMCU5g)
-
----
 
 ## About Me
 
@@ -66,3 +59,4 @@ Learning DevOps and Cloud ☁️
 
 * [LinkedIn](https://www.linkedin.com/in/amandeol063)
 * [Credly](https://www.credly.com/users/amandeol063)
+
