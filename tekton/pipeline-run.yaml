@@ -1,7 +1,0 @@
-apiVersion: tekton.dev/v1beta1
-kind: PipelineRun
-metadata:
-  name: budget-app-pipeline-run
-spec:
-  pipelineRef:
-    name: budget-app-pipeline
